@@ -1,0 +1,34 @@
+{
+  "name": "magic-sprinkles",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit",
+    "lint-staged": "lint-staged",
+    "pre-commit": "run-p lint-staged typecheck",
+    "prepare": "npx simple-git-hooks"
+  },
+  "keywords": [],
+  "author": "Soorria Saruva <soorria.ss@gmail.com> (https://soorria.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.12.2",
+    "@changesets/cli": "^2.26.2",
+    "lint-staged": "^15.0.1",
+    "npm-run-all": "^4.1.5",
+    "publint": "^0.2.4",
+    "simple-git-hooks": "^2.9.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "lint-staged": {
+    "src/*.{js,ts,jsx,tsx,vue}": [
+      "prettier --write"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm run pre-commit"
+  }
+}
