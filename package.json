@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint-staged": "lint-staged",
     "pre-commit": "run-p lint-staged typecheck",
