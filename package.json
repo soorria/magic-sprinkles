@@ -12,7 +12,8 @@
     "prepare": "npx simple-git-hooks",
     "check-package-json": "publint",
     "changeset": "changeset",
-    "release": "pnpm run build && changeset publish"
+    "release": "pnpm run build && changeset publish",
+    "dev": "cd dev && pnpm run dev"
   },
   "files": [
     "dist"
