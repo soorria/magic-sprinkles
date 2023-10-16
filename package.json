@@ -9,6 +9,7 @@
     "lint-staged": "lint-staged",
     "pre-commit": "run-p lint-staged typecheck",
     "prepare": "npx simple-git-hooks",
+    "check-package-json": "publint",
     "changeset": "changeset"
   },
   "keywords": [],
