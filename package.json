@@ -8,7 +8,8 @@
     "typecheck": "tsc --noEmit",
     "lint-staged": "lint-staged",
     "pre-commit": "run-p lint-staged typecheck",
-    "prepare": "npx simple-git-hooks"
+    "prepare": "npx simple-git-hooks",
+    "changeset": "changeset"
   },
   "keywords": [],
   "author": "Soorria Saruva <soorria.ss@gmail.com> (https://soorria.com/)",
