@@ -11,7 +11,8 @@
     "pre-commit": "run-p lint-staged typecheck",
     "prepare": "npx simple-git-hooks",
     "check-package-json": "publint",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "release": "pnpm run build && changeset publish"
   },
   "files": [
     "dist"
