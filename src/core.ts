@@ -1,5 +1,10 @@
-import { MagicSprinklesCleanup, MagicSprinklesOptions } from './types'
-import { createNonRepeatRandomItem } from './utils'
+import { MagicSprinklesCleanup, MagicSprinklesOptions, Sprinkle } from './types'
+import {
+  createNonRepeatRandomItem,
+  drawLine,
+  easeInOutCubic,
+  withCanvasState,
+} from './utils'
 
 type CoreRendererOptions = Omit<MagicSprinklesOptions, 'root'> & {
   container: HTMLDivElement
@@ -364,29 +369,4 @@ export const coreRenderer = ({
 
     stopped = true
   }
-}
-
-function easeInOutCubic(x: number): number {
-  return x < 0.5 ? 4 * Math.pow(x, 3) : 1 - Math.pow(-2 * x + 2, 3) / 2
-}
-
-const withCanvasState = (ctx: CanvasRenderingContext2D, fn: () => void) => {
-  ctx.save()
-  fn()
-  ctx.restore()
-}
-
-type Point = [x: number, y: number]
-type Line = [Point, ...Point[]]
-type Sprinkle = [Line, ...Line[]]
-
-const drawLine = (ctx: CanvasRenderingContext2D, line: Line) => {
-  ctx.beginPath()
-  const [point, ...rest] = line
-  ctx.moveTo(point[0], point[1])
-
-  for (const p of rest) {
-    ctx.lineTo(p[0], p[1])
-  }
-  ctx.stroke()
 }
