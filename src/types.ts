@@ -2,10 +2,19 @@ export type MagicSprinklesCleanup = () => void
 
 export type MagicSprinklesOptions = {
   root: HTMLElement
-  // canvas?: HTMLCanvasElement
   // ignoreMouseOutside?: boolean
+  sprinkles?: Sprinkle[]
 }
 
+type PartiallyRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>
+
+export type MagicSprinklesPreset = PartiallyRequired<
+  Omit<MagicSprinklesOptions, 'root'>,
+  'sprinkles'
+>
+
+type NonEmptyArray<T> = [T, ...T[]]
+
 export type Point = [x: number, y: number]
-export type Line = [Point, ...Point[]]
-export type Sprinkle = [Line, ...Line[]]
+export type Line = NonEmptyArray<Point>
+export type Sprinkle = NonEmptyArray<Line>

@@ -1,10 +1,11 @@
-import { MagicSprinklesCleanup, MagicSprinklesOptions, Sprinkle } from './types'
+import { MagicSprinklesCleanup, MagicSprinklesOptions } from './types'
 import {
   createNonRepeatRandomItem,
   drawLine,
   easeInOutCubic,
   withCanvasState,
 } from './utils'
+import { basePreset } from './presets/base'
 
 type CoreRendererOptions = Omit<MagicSprinklesOptions, 'root'> & {
   container: HTMLDivElement
@@ -39,12 +40,15 @@ const BASE_GRID_SIZE = 10
 export const coreRenderer = ({
   container,
   canvas,
+  ...options
 }: CoreRendererOptions): MagicSprinklesCleanup => {
   const ctx = canvas.getContext('2d')
 
   if (!ctx) {
     throw new Error('Could not get canvas context')
   }
+
+  const { sprinkles } = { ...basePreset, ...options }
 
   const { devicePixelRatio: ratio = 1 } = window
 
@@ -60,84 +64,10 @@ export const coreRenderer = ({
    */
   let mouse = { x: -1000, y: -1000 }
 
-  const debugSprinkle: Sprinkle = [
-    [
-      [0, -7],
-      [0, 2],
-    ],
-    [
-      [-2, -3],
-      [0, -7],
-      [2, -3],
-    ],
-    [
-      [0, 6],
-      [0, 8],
-    ],
-  ]
-
-  const availableSprinkles: Sprinkle[] =
-    query.debugSprinkle || query.debugPattern
-      ? [debugSprinkle]
-      : [
-          //
-
-          [
-            [
-              [-4, -9],
-              [-3, 8],
-            ],
-            [
-              [3, -7],
-              [2, 6],
-            ],
-          ],
-
-          [
-            [
-              [-3, -8],
-              [-3, 8],
-            ],
-            [
-              [3, -8],
-              [3, 8],
-            ],
-          ],
-
-          [
-            [
-              [-2, -9],
-              [-3, 8],
-            ],
-            [
-              [3, -7],
-              [4, 6],
-            ],
-          ],
-
-          [
-            [
-              [-3, -9],
-              [-4, -3],
-              [-4, 0],
-              [-3, 6],
-            ],
-            [
-              [4, -9],
-              [3, -3],
-              [2, 0],
-              [2, 3],
-              [3, 6],
-            ],
-          ],
-
-          //
-        ]
-
   const getRandomXOffset = createNonRepeatRandomItem([-4, -2, 2, 4])
   const getRandomYOffset = createNonRepeatRandomItem([-4, -2, 2, 4])
   const getRandomColor = createNonRepeatRandomItem(availableSprinkleColors)
-  const getRandomSprinkle = createNonRepeatRandomItem(availableSprinkles)
+  const getRandomSprinkle = createNonRepeatRandomItem(sprinkles)
 
   const baseGridSprinklePattern = Array.from(
     { length: BASE_GRID_SIZE },
