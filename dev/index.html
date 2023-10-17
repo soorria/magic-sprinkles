@@ -4,16 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Magic Sprinkles</title>
   </head>
   <body>
-    <main>
+    <main id="demos"></main>
+    <template id="demo-template">
       <div class="demo">
-        <section id="vanilla-demo"></section>
+        <section>
+          <header>
+            <h2></h2>
+          </header>
 
-        <section id="react-demo"></section>
+          <div class="magic-sprinkles"></div>
+        </section>
       </div>
-    </main>
+    </template>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
