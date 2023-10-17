@@ -1,6 +1,8 @@
 import { createNonRepeatRandomItem } from './utils'
 
 export type MagicSprinklesOptions = {
+  root: HTMLElement
+  // canvas?: HTMLCanvasElement
   // ignoreMouseOutside?: boolean
 }
 
@@ -29,11 +31,26 @@ const TAU = PI * 2
 
 const BASE_GRID_SIZE = 10
 
-export const magicSprinkles = (
-  canvas: HTMLCanvasElement,
-  container: HTMLDivElement,
-  _options: MagicSprinklesOptions = {}
-): (() => void) => {
+export const magicSprinkles = ({
+  root,
+}: MagicSprinklesOptions): (() => void) => {
+  const container = document.createElement('div')
+  container.setAttribute(
+    'style',
+    'position: relative; width: 100%; height: 100%'
+  )
+  const canvas = document.createElement('canvas')
+  canvas.setAttribute(
+    'style',
+    'position: absolute; top: 0; left: 0; width: 100%; height: 100%'
+  )
+  container.append(canvas)
+
+  if (root.hasChildNodes()) {
+    console.warn('magicSprinkles: root already element has child nodes')
+  }
+  root.append(container)
+
   const ctx = canvas.getContext('2d')
 
   if (!ctx) {
@@ -163,16 +180,20 @@ export const magicSprinkles = (
       .flat()
   let grid = flattenGrid(baseGridSprinklePattern)
 
+  let set = false
   const resizeObserver = new ResizeObserver((entries) => {
-    if (!entries.length) return
-
     const rect = entries[0]!.contentRect
+
+    console.log(structuredClone(rect))
+
+    if (!entries.length || set) return
 
     width = rect.width
     height = rect.height
 
     canvas.width = width * ratio
     canvas.height = height * ratio
+    // set = true
 
     const rows = Math.ceil(height / CELL_WIDTH)
     const columns = Math.ceil(width / CELL_WIDTH)
