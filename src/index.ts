@@ -1,10 +1,5 @@
+import { MagicSprinklesCleanup, MagicSprinklesOptions } from './types'
 import { createNonRepeatRandomItem } from './utils'
-
-export type MagicSprinklesOptions = {
-  root: HTMLElement
-  // canvas?: HTMLCanvasElement
-  // ignoreMouseOutside?: boolean
-}
 
 const colors = {
   pink: '#ff7777',
@@ -33,7 +28,7 @@ const BASE_GRID_SIZE = 10
 
 export const magicSprinkles = ({
   root,
-}: MagicSprinklesOptions): (() => void) => {
+}: MagicSprinklesOptions): MagicSprinklesCleanup => {
   const container = document.createElement('div')
   container.setAttribute(
     'style',
