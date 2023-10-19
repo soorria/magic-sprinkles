@@ -1,4 +1,5 @@
 import { Sprinkle } from '../types'
+import { basePreset } from './base'
 import { definePreset } from '.'
 
 const debugSprinkle: Sprinkle = [
@@ -18,5 +19,6 @@ const debugSprinkle: Sprinkle = [
 ]
 
 export const debugPreset = definePreset({
+  ...basePreset,
   sprinkles: [debugSprinkle],
 })
