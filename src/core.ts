@@ -12,21 +12,6 @@ type CoreRendererOptions = Omit<MagicSprinklesOptions, 'root'> & {
   canvas: HTMLCanvasElement
 }
 
-const colors = {
-  pink: '#ff7777',
-  purple: '#ff00ff',
-  red: '#ff0000',
-  green: '#00ff00',
-  cyan: '#00ffff',
-  base: '#000000',
-}
-const availableSprinkleColors = [
-  colors.pink,
-  colors.purple,
-  colors.green,
-  colors.cyan,
-]
-
 const CELL_WIDTH = 30
 const STROKE_WIDTH = 2
 const CELL_HALF_WIDTH = CELL_WIDTH / 2
@@ -48,7 +33,7 @@ export const coreRenderer = ({
     throw new Error('Could not get canvas context')
   }
 
-  const { sprinkles } = { ...basePreset, ...options }
+  const { sprinkles, colors } = { ...basePreset, ...options }
 
   const { devicePixelRatio: ratio = 1 } = window
 
@@ -66,7 +51,7 @@ export const coreRenderer = ({
 
   const getRandomXOffset = createNonRepeatRandomItem([-4, -2, 2, 4])
   const getRandomYOffset = createNonRepeatRandomItem([-4, -2, 2, 4])
-  const getRandomColor = createNonRepeatRandomItem(availableSprinkleColors)
+  const getRandomColor = createNonRepeatRandomItem(colors)
   const getRandomSprinkle = createNonRepeatRandomItem(sprinkles)
 
   const baseGridSprinklePattern = Array.from(

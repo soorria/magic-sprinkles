@@ -1,5 +1,12 @@
 import { definePreset } from '.'
 
+const colors = {
+  pink: '#ff7777',
+  purple: '#ff00ff',
+  red: '#ff0000',
+  green: '#00ff00',
+  cyan: '#00ffff',
+} as const
 export const basePreset = definePreset({
   sprinkles: [
     //
@@ -55,4 +62,5 @@ export const basePreset = definePreset({
 
     //
   ],
+  colors: [colors.pink, colors.purple, colors.red, colors.green, colors.cyan],
 })
