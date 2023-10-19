@@ -1,5 +1,18 @@
 # magic-sprinkles
 
+## 0.2.0
+
+### Minor Changes
+
+- 279cb60: feat: allow specifying sprinkle patterns
+- 88f3888: feat: allow specifying the colors
+
+### Patch Changes
+
+- 0792e7a: refactor: extract out options and cleanup types
+- 30cd89e: refactor: extract out coreRenderer from DOM creation
+- 7c7c9f4: refactor: extract out canvas helpers and sprinkle types
+
 ## 0.1.0
 
 ### Minor Changes
