@@ -1,5 +1,11 @@
 # magic-sprinkles
 
+## 0.3.0
+
+### Minor Changes
+
+- 1ef6961: feat: actually allow specifying colors
+
 ## 0.2.0
 
 ### Minor Changes
